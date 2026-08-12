@@ -83,7 +83,7 @@ export function FootUlcer({ patient }: Props) {
     <div className="grid gap-6 lg:grid-cols-3">
       <div className="space-y-4 lg:col-span-2">
         <div className="rounded-xl border bg-card p-6 shadow-sm">
-          <h2 className="text-lg font-semibold">Diabetic Foot Ulcer Monitoring</h2>
+          <h2 className="font-display text-lg font-semibold tracking-tight">Diabetic Foot Ulcer Monitoring</h2>
           <p className="text-sm text-muted-foreground">Weekly Wagner grading, neurovascular check, and wound description.</p>
 
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
@@ -110,7 +110,7 @@ export function FootUlcer({ patient }: Props) {
                     key={w.grade}
                     type="button"
                     onClick={() => setForm({ ...form, wagnerGrade: w.grade })}
-                    className={`rounded-lg border p-3 text-left text-sm transition ${form.wagnerGrade === w.grade ? "border-primary bg-primary/5 ring-2 ring-primary/30" : "hover:bg-muted/50"}`}
+                    className={`rounded-lg border p-3 text-left text-sm transition ${form.wagnerGrade === w.grade ? "border-[var(--tab-foot)] bg-[var(--tab-foot-soft)] ring-2 ring-[var(--tab-foot)]/30" : "hover:bg-muted/50"}`}
                   >
                     <div className="flex items-center justify-between">
                       <span className="font-medium">Grade {w.grade}</span>
@@ -191,7 +191,7 @@ export function FootUlcer({ patient }: Props) {
         ) : (
           <ul className="space-y-3">
             {assessments.slice(0, 6).map((h) => (
-              <li key={h._id} className="border-l-2 border-primary pl-3">
+              <li key={h._id} className="border-l-2 border-[var(--tab-foot)] pl-3">
                 <div className="flex items-center justify-between">
                   <div className="text-sm font-medium">{h.side} · {h.location || "—"}</div>
                   <Badge className={gradeTone(h.wagnerGrade)}>Grade {h.wagnerGrade}</Badge>

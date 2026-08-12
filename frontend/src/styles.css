@@ -5,6 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Inter", ui-sans-serif, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -49,46 +52,67 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/*
+  Design direction: a bedside clinical chart, not a generic teal SaaS
+  dashboard. Ink-on-paper structure, a deep steel-blue "rail" as the
+  brand/action color, and five module accent colors that work like the
+  colored index tabs on a real paper patient chart (see --tab-* below,
+  used by the tab bar and module headers). Numeric readouts (scores,
+  timers, percentages) use --font-mono to read like instrument digits.
+*/
 :root {
-  --radius: 0.75rem;
-  --background: oklch(0.985 0.005 200);
-  --foreground: oklch(0.22 0.03 220);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0.03 220);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.03 220);
-  --primary: oklch(0.52 0.09 195);
+  --radius: 0.5rem;
+  --background: oklch(0.965 0.012 190);
+  --foreground: oklch(0.2 0.025 240);
+  --card: oklch(0.995 0.002 200);
+  --card-foreground: oklch(0.2 0.025 240);
+  --popover: oklch(0.995 0.002 200);
+  --popover-foreground: oklch(0.2 0.025 240);
+  --primary: oklch(0.4 0.09 238);
   --primary-foreground: oklch(0.99 0.005 200);
-  --secondary: oklch(0.95 0.02 200);
-  --secondary-foreground: oklch(0.3 0.05 210);
-  --muted: oklch(0.96 0.01 210);
-  --muted-foreground: oklch(0.5 0.02 220);
-  --accent: oklch(0.92 0.05 30);
-  --accent-foreground: oklch(0.3 0.08 30);
-  --destructive: oklch(0.6 0.22 25);
+  --secondary: oklch(0.93 0.02 235);
+  --secondary-foreground: oklch(0.3 0.05 235);
+  --muted: oklch(0.94 0.012 210);
+  --muted-foreground: oklch(0.48 0.02 230);
+  --accent: oklch(0.9 0.055 75);
+  --accent-foreground: oklch(0.3 0.06 70);
+  --destructive: oklch(0.56 0.19 22);
   --destructive-foreground: oklch(0.99 0.005 200);
-  --success: oklch(0.65 0.14 155);
+  --success: oklch(0.53 0.1 152);
   --success-foreground: oklch(0.99 0.005 200);
-  --warning: oklch(0.78 0.16 75);
+  --warning: oklch(0.72 0.15 70);
   --warning-foreground: oklch(0.25 0.05 60);
-  --danger: oklch(0.6 0.22 25);
+  --danger: oklch(0.56 0.19 22);
   --danger-foreground: oklch(0.99 0.005 200);
-  --border: oklch(0.9 0.015 210);
-  --input: oklch(0.92 0.015 210);
-  --ring: oklch(0.52 0.09 195);
-  --chart-1: oklch(0.52 0.09 195);
-  --chart-2: oklch(0.65 0.14 155);
-  --chart-3: oklch(0.78 0.16 75);
-  --chart-4: oklch(0.6 0.22 25);
-  --chart-5: oklch(0.55 0.12 260);
-  --sidebar: oklch(0.98 0.005 200);
-  --sidebar-foreground: oklch(0.22 0.03 220);
-  --sidebar-primary: oklch(0.52 0.09 195);
+  --border: oklch(0.87 0.016 220);
+  --input: oklch(0.9 0.015 220);
+  --ring: oklch(0.4 0.09 238);
+  --chart-1: oklch(0.4 0.09 238);
+  --chart-2: oklch(0.53 0.1 152);
+  --chart-3: oklch(0.72 0.15 70);
+  --chart-4: oklch(0.56 0.19 22);
+  --chart-5: oklch(0.48 0.11 305);
+  --sidebar: oklch(0.97 0.008 195);
+  --sidebar-foreground: oklch(0.2 0.025 240);
+  --sidebar-primary: oklch(0.4 0.09 238);
   --sidebar-primary-foreground: oklch(0.99 0 0);
-  --sidebar-accent: oklch(0.95 0.02 200);
-  --sidebar-accent-foreground: oklch(0.3 0.05 210);
-  --sidebar-border: oklch(0.9 0.015 210);
-  --sidebar-ring: oklch(0.52 0.09 195);
+  --sidebar-accent: oklch(0.93 0.02 235);
+  --sidebar-accent-foreground: oklch(0.3 0.05 235);
+  --sidebar-border: oklch(0.87 0.016 220);
+  --sidebar-ring: oklch(0.4 0.09 238);
+
+  /* Module "chart tab" colors — one per clinical module, used consistently
+     across the tab bar, section headers, and icons for that module. */
+  --tab-reposition: oklch(0.55 0.12 230);
+  --tab-reposition-soft: oklch(0.93 0.03 230);
+  --tab-braden: oklch(0.48 0.12 305);
+  --tab-braden-soft: oklch(0.92 0.03 305);
+  --tab-skin: oklch(0.56 0.15 355);
+  --tab-skin-soft: oklch(0.93 0.035 355);
+  --tab-foot: oklch(0.58 0.14 75);
+  --tab-foot-soft: oklch(0.93 0.035 75);
+  --tab-compliance: oklch(0.42 0.09 155);
+  --tab-compliance-soft: oklch(0.92 0.03 155);
 }
 
 @layer base {
@@ -99,5 +123,8 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  ::selection {
+    background: var(--tab-reposition-soft);
   }
 }

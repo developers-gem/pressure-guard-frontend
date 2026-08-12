@@ -34,7 +34,7 @@ export default function Login() {
             <ShieldCheck className="h-6 w-6" />
           </div>
           <div>
-            <div className="font-semibold">PressureGuard Care</div>
+            <div className="font-display font-semibold tracking-tight">PressureGuard Care</div>
             <div className="text-xs text-muted-foreground">Staff sign-in</div>
           </div>
         </div>

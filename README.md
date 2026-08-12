@@ -40,6 +40,7 @@ npm run dev                 # http://localhost:4000
 Requires a running MongoDB instance (local `mongod`, Docker, or Atlas) —
 point `MONGO_URI` in `.env` at it.
 
+
 ### 2. Frontend
 
 ```bash

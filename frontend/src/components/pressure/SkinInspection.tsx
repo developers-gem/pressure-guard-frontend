@@ -79,7 +79,7 @@ export function SkinInspection({ patient }: Props) {
     <div className="grid gap-6 lg:grid-cols-3">
       <div className="space-y-4 lg:col-span-2">
         <div className="rounded-xl border bg-card p-6 shadow-sm">
-          <h2 className="text-lg font-semibold">Head-to-Toe Skin Inspection</h2>
+          <h2 className="font-display text-lg font-semibold tracking-tight">Head-to-Toe Skin Inspection</h2>
           <p className="text-sm text-muted-foreground">Assess bony prominences and high-risk areas. Reference the diagram at right.</p>
           <div className="mt-4">
             <label className="mb-1 block text-xs font-medium text-muted-foreground">Inspecting staff</label>
@@ -104,7 +104,7 @@ export function SkinInspection({ patient }: Props) {
                         key={s.key}
                         type="button"
                         onClick={() => setAreaState({ ...areaState, [area]: { ...state, status: s.key } })}
-                        className={`rounded-full border px-3 py-1 text-xs transition ${state.status === s.key ? "border-primary bg-primary/10 text-primary" : "hover:bg-muted"}`}
+                        className={`rounded-full border px-3 py-1 text-xs transition ${state.status === s.key ? "border-[var(--tab-skin)] bg-[var(--tab-skin-soft)] text-[var(--tab-skin)]" : "hover:bg-muted"}`}
                       >
                         {s.label}
                       </button>
@@ -153,7 +153,7 @@ export function SkinInspection({ patient }: Props) {
               {historyForPatient.map((h) => {
                 const issues = h.areas.filter((a) => a.status && a.status !== "intact");
                 return (
-                  <li key={h._id} className="border-l-2 border-primary pl-3">
+                  <li key={h._id} className="border-l-2 border-[var(--tab-skin)] pl-3">
                     <div className="text-xs text-muted-foreground">{new Date(h.timestamp).toLocaleString()} · {h.staff}</div>
                     <div className="text-sm">{issues.length === 0 ? "All areas intact" : `${issues.length} finding${issues.length > 1 ? "s" : ""}`}</div>
                   </li>

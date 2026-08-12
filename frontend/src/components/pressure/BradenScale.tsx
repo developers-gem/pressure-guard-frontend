@@ -124,7 +124,7 @@ export function BradenScale({ patient, refreshPatients }: Props) {
       <div className="rounded-xl border bg-card p-6 shadow-sm">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
-            <h2 className="text-lg font-semibold">Braden Scale Assessment</h2>
+            <h2 className="font-display text-lg font-semibold tracking-tight">Braden Scale Assessment</h2>
             <p className="text-sm text-muted-foreground">Total range 6–23. Lower scores = higher risk of pressure injury.</p>
             <div className="mt-3 max-w-xs">
               <label className="mb-1 block text-xs font-medium text-muted-foreground">Assessing staff</label>
@@ -133,7 +133,7 @@ export function BradenScale({ patient, refreshPatients }: Props) {
           </div>
           <div className="text-right">
             <div className="text-xs uppercase tracking-wider text-muted-foreground">Current total</div>
-            <div className="text-3xl font-bold tabular-nums">{complete ? total : "—"}</div>
+            <div className="font-mono text-3xl font-bold tabular-nums">{complete ? total : "—"}</div>
             {result && <Badge className={`mt-1 ${toneClass(result.tone)}`}>{result.level}</Badge>}
           </div>
         </div>
@@ -159,7 +159,7 @@ export function BradenScale({ patient, refreshPatients }: Props) {
                     key={o.score}
                     type="button"
                     onClick={() => setScores({ ...scores, [c.key]: o.score })}
-                    className={`w-full rounded-lg border p-3 text-left transition ${active ? "border-primary bg-primary/5 ring-2 ring-primary/30" : "hover:bg-muted/50"}`}
+                    className={`w-full rounded-lg border p-3 text-left transition ${active ? "border-[var(--tab-braden)] bg-[var(--tab-braden-soft)] ring-2 ring-[var(--tab-braden)]/30" : "hover:bg-muted/50"}`}
                   >
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-medium">{o.label}</span>

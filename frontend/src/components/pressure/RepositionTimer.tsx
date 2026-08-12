@@ -87,11 +87,14 @@ export function RepositionTimer({ patient, refreshPatients }: Props) {
       <div className="lg:col-span-2 space-y-4">
         <div className="rounded-xl border bg-card p-6 shadow-sm">
           <div className="flex items-center gap-3">
-            <div className={`rounded-full p-3 ${overdue ? "bg-destructive/15 text-destructive" : "bg-primary/10 text-primary"}`}>
+            <div
+              className={`rounded-full p-3 ${overdue ? "bg-destructive/15 text-destructive" : ""}`}
+              style={overdue ? undefined : { background: "var(--tab-reposition-soft)", color: "var(--tab-reposition)" }}
+            >
               <AlarmClock className="h-6 w-6" />
             </div>
             <div>
-              <h2 className="text-lg font-semibold">2-Hour Repositioning Timer</h2>
+              <h2 className="font-display text-lg font-semibold tracking-tight">2-Hour Repositioning Timer</h2>
               <p className="text-sm text-muted-foreground">{patient ? `Tracking ${patient.name} · Room ${patient.room}` : "No patient selected"}</p>
             </div>
           </div>
@@ -102,11 +105,15 @@ export function RepositionTimer({ patient, refreshPatients }: Props) {
                 <div className="flex items-baseline justify-between">
                   <div>
                     <div className="text-xs uppercase tracking-wider text-muted-foreground">{overdue ? "Overdue by" : "Time until next turn"}</div>
-                    <div className={`text-4xl font-bold tabular-nums ${overdue ? "text-destructive" : "text-foreground"}`}>{format(remaining ?? 0)}</div>
+                    <div className={`font-mono text-4xl font-bold tabular-nums ${overdue ? "text-destructive" : "text-foreground"}`}>{format(remaining ?? 0)}</div>
                   </div>
                   <div className="text-right text-xs text-muted-foreground">Last turn: {new Date(last).toLocaleString()}</div>
                 </div>
-                <Progress value={pct} className="mt-4 h-3" />
+                <Progress
+                  value={pct}
+                  className="mt-4 h-3"
+                  indicatorClassName={overdue ? "!bg-destructive" : "![background:var(--tab-reposition)]"}
+                />
               </>
             ) : (
               <p className="text-sm text-muted-foreground">No repositioning logged yet. Log the first turn below to start the 2-hour timer.</p>
@@ -148,7 +155,7 @@ export function RepositionTimer({ patient, refreshPatients }: Props) {
         ) : (
           <ul className="space-y-3">
             {recentForPatient.map((l) => (
-              <li key={l._id} className="border-l-2 border-primary pl-3">
+              <li key={l._id} className="border-l-2 border-[var(--tab-reposition)] pl-3">
                 <div className="text-sm font-medium">{l.position}</div>
                 <div className="text-xs text-muted-foreground">{new Date(l.timestamp).toLocaleString()} · {l.staff}</div>
                 {l.notes && <div className="mt-1 text-xs text-foreground/80">{l.notes}</div>}

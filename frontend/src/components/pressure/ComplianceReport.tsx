@@ -69,7 +69,7 @@ export function ComplianceReport() {
                 <li key={r.patientId}>
                   <div className="mb-1 flex items-center justify-between text-sm">
                     <span className="font-medium">{r.name} · Room {r.room}</span>
-                    <span className="tabular-nums text-muted-foreground">{r.turns}/12 · {r.pct}%</span>
+                    <span className="font-mono tabular-nums text-muted-foreground">{r.turns}/12 · {r.pct}%</span>
                   </div>
                   <div className="h-2 overflow-hidden rounded-full bg-muted">
                     <div className={`h-full ${r.pct >= 90 ? "bg-success" : r.pct >= 70 ? "bg-warning" : "bg-destructive"}`} style={{ width: `${r.pct}%` }} />
@@ -133,9 +133,9 @@ export function ComplianceReport() {
 function Metric({ label, value, tone }: { label: string; value: string | number; tone?: "success" | "warning" | "danger" }) {
   const color = tone === "success" ? "text-success" : tone === "warning" ? "text-warning" : tone === "danger" ? "text-destructive" : "text-foreground";
   return (
-    <div className="rounded-xl border bg-card p-5 shadow-sm">
+    <div className="rounded-xl border border-t-2 bg-card p-5 shadow-sm" style={{ borderTopColor: "var(--tab-compliance)" }}>
       <div className="text-xs uppercase tracking-wider text-muted-foreground">{label}</div>
-      <div className={`mt-1 text-3xl font-bold tabular-nums ${color}`}>{value}</div>
+      <div className={`font-mono mt-1 text-3xl font-bold tabular-nums ${color}`}>{value}</div>
     </div>
   );
 }

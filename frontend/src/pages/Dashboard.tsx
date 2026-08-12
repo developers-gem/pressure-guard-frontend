@@ -13,6 +13,20 @@ import { SkinInspection } from "@/components/pressure/SkinInspection";
 import { FootUlcer } from "@/components/pressure/FootUlcer";
 import { ComplianceReport } from "@/components/pressure/ComplianceReport";
 
+/**
+ * Each module gets a fixed accent color, styled like the colored index
+ * tabs on a paper patient chart (Vitals/Skin/Wound dividers). The color
+ * shows as a small dot on every tab and fills the tab when active, so the
+ * same color identifies that module's data everywhere else in the app.
+ */
+const MODULE_TABS = [
+  { value: "repositioning", label: "Repositioning", icon: RefreshCw, color: "var(--tab-reposition)" },
+  { value: "braden", label: "Braden Scale", icon: Activity, color: "var(--tab-braden)" },
+  { value: "skin", label: "Skin Inspection", icon: Scan, color: "var(--tab-skin)" },
+  { value: "foot", label: "Diabetic Foot", icon: Footprints, color: "var(--tab-foot)" },
+  { value: "compliance", label: "Compliance", icon: ClipboardList, color: "var(--tab-compliance)" },
+] as const;
+
 export default function Dashboard() {
   const { user, logout } = useAuth();
   const [patients, setPatients] = useState<Patient[]>([]);
@@ -39,15 +53,15 @@ export default function Dashboard() {
   const currentPatient = useMemo(() => patients.find((p) => p.id === currentId) ?? null, [patients, currentId]);
 
   return (
-    <div className="min-h-screen bg-muted/30">
+    <div className="min-h-screen bg-background">
       <header className="border-b bg-card">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
           <div className="flex items-center gap-3">
-            <div className="rounded-lg bg-primary/10 p-2 text-primary">
+            <div className="rounded-md bg-primary/10 p-2 text-primary">
               <ShieldCheck className="h-6 w-6" />
             </div>
             <div>
-              <div className="text-lg font-bold leading-tight">PressureGuard</div>
+              <div className="font-display text-lg font-semibold leading-tight tracking-tight">PressureGuard</div>
               <div className="text-xs text-muted-foreground">Pressure Injury Prevention · Nursing Homes & Hospitals</div>
             </div>
           </div>
@@ -70,12 +84,19 @@ export default function Dashboard() {
         <PatientBar patients={patients} refresh={refresh} currentId={currentId} setCurrentId={setCurrentId} />
 
         <Tabs defaultValue="repositioning">
-          <TabsList className="flex-wrap">
-            <TabsTrigger value="repositioning" className="gap-1.5"><RefreshCw className="h-4 w-4" /> Repositioning</TabsTrigger>
-            <TabsTrigger value="braden" className="gap-1.5"><Activity className="h-4 w-4" /> Braden Scale</TabsTrigger>
-            <TabsTrigger value="skin" className="gap-1.5"><Scan className="h-4 w-4" /> Skin Inspection</TabsTrigger>
-            <TabsTrigger value="foot" className="gap-1.5"><Footprints className="h-4 w-4" /> Diabetic Foot</TabsTrigger>
-            <TabsTrigger value="compliance" className="gap-1.5"><ClipboardList className="h-4 w-4" /> Compliance</TabsTrigger>
+          <TabsList className="h-auto flex-wrap gap-1 bg-secondary/60 p-1.5">
+            {MODULE_TABS.map(({ value, label, icon: Icon, color }) => (
+              <TabsTrigger
+                key={value}
+                value={value}
+                style={{ ["--tab-color" as string]: color }}
+                className="gap-1.5 rounded-md border border-transparent data-[state=active]:!border-[var(--tab-color)] data-[state=active]:!bg-[var(--tab-color)] data-[state=active]:!text-white data-[state=active]:!shadow-none"
+              >
+                <span aria-hidden className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: color }} />
+                <Icon className="h-4 w-4" />
+                {label}
+              </TabsTrigger>
+            ))}
           </TabsList>
 
           <TabsContent value="repositioning" className="mt-4">

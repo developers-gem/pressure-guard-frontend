@@ -36,7 +36,7 @@ export default function Register() {
             <ShieldCheck className="h-6 w-6" />
           </div>
           <div>
-            <div className="font-semibold">PressureGuard Care</div>
+            <div className="font-display font-semibold tracking-tight">PressureGuard Care</div>
             <div className="text-xs text-muted-foreground">Create staff account</div>
           </div>
         </div>
