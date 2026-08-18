@@ -55,3 +55,35 @@ export const login = asyncHandler(async (req, res) => {
 export const me = asyncHandler(async (req, res) => {
   res.json({ user: req.user.toSafeJSON() });
 });
+
+
+export const deleteUser = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+
+  // Check if email is provided
+  if (!email) {
+    return res.status(400).json({
+      success: false,
+      msg: "Email is required!",
+    });
+  }
+
+  // Find the user
+  const user = await User.findOne({ email });
+
+  // Check if user exists
+  if (!user) {
+    return res.status(404).json({
+      success: false,
+      msg: "This user does not exist!",
+    });
+  }
+
+  // Delete user
+  await User.findByIdAndDelete(user._id);
+
+  return res.status(200).json({
+    success: true,
+    msg: "User deleted successfully!",
+  });
+});

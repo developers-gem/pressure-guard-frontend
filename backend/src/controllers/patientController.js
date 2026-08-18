@@ -38,7 +38,7 @@ export const updatePatient = asyncHandler(async (req, res) => {
   const patient = await Patient.findByIdAndUpdate(req.params.id, updates, { new: true, runValidators: true });
   if (!patient) return res.status(404).json({ error: "Patient not found" });
   res.json(patient.toJSONSafe());
-});
+}); 
 
 // DELETE /api/patients/:id
 export const deletePatient = asyncHandler(async (req, res) => {
