@@ -3,6 +3,7 @@ import { useAuth } from "@/context/AuthContext";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
 import Dashboard from "@/pages/Dashboard";
+import DeleteUser from "@/pages/DeleteUser";
 
 function Protected({ children }: { children: JSX.Element }) {
   const { user, loading } = useAuth();
@@ -16,6 +17,7 @@ export default function App() {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/deleteUser" element={<DeleteUser/>} />
       <Route
         path="/"
         element={
