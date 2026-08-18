@@ -3,7 +3,7 @@ import { useAuth } from "@/context/AuthContext";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
 import Dashboard from "@/pages/Dashboard";
-import DeleteUser from "@/pages/DeleteUser";
+import DeleteUser from "./pages/DeleteUser";
 
 function Protected({ children }: { children: JSX.Element }) {
   const { user, loading } = useAuth();

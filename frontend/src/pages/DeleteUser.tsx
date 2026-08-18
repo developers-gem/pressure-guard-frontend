@@ -1,18 +1,27 @@
-import React, { useState } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const DeleteUser = () => {
-  const [email, setEmail] = useState("");
+interface DeleteUserResponse {
+  success: boolean;
+  msg?: string;
+}
 
-  const handleInput = (e) => {
+const DeleteUser = () => {
+  const [email, setEmail] = useState<string>("");
+
+  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
-  const notify = (message) => toast(message);
+  const notify = (message: string): void => {
+    toast(message);
+  };
 
-  const handleFormSubmit = async (e) => {
+  const handleFormSubmit = async (
+    e: FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     e.preventDefault();
 
     try {
@@ -24,7 +33,7 @@ const DeleteUser = () => {
         body: JSON.stringify({ email }),
       });
 
-      const data = await res.json();
+      const data: DeleteUserResponse = await res.json();
 
       if (data.success) {
         notify("User Deleted!");
@@ -33,7 +42,7 @@ const DeleteUser = () => {
       }
 
       setEmail("");
-    } catch (error) {
+    } catch (error: unknown) {
       console.error(error);
       notify("Unable to connect to server.");
     }
@@ -43,16 +52,18 @@ const DeleteUser = () => {
     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         {/* Logo / App Name */}
-        <div className="text-center mb-8">
+        <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold text-green-600">
             PressureGuard Care
           </h1>
 
-          <p className="mt-2 text-gray-500 text-sm">Manage your account</p>
+          <p className="mt-2 text-sm text-gray-500">
+            Manage your account
+          </p>
         </div>
 
         {/* Delete Card */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
+        <div className="rounded-2xl bg-white p-8 text-center shadow-lg">
           <div className="mb-6">
             <h2 className="text-2xl font-semibold text-gray-800">
               Delete Account
@@ -64,15 +75,7 @@ const DeleteUser = () => {
           </div>
 
           <form onSubmit={handleFormSubmit}>
-            {/* Email */}
             <div className="mb-6">
-              {/* <label
-                htmlFor="delete"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Email Address
-              </label> */}
-
               <input
                 type="email"
                 id="delete"
@@ -81,25 +84,18 @@ const DeleteUser = () => {
                 onChange={handleInput}
                 placeholder="Enter your email"
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg
-                           outline-none transition
-                           focus:ring-2 focus:ring-red-500
-                           focus:border-red-500
-                           placeholder:text-gray-400"
+                className="w-full rounded-lg border border-gray-300 px-4 py-3
+                  outline-none transition placeholder:text-gray-400
+                  focus:border-red-500 focus:ring-2 focus:ring-red-500"
               />
             </div>
 
-            {/* Delete Button */}
             <button
               type="submit"
-              className="w-full py-3 px-4
-                         bg-red-600 hover:bg-red-700
-                         text-white font-semibold
-                         rounded-lg
-                         transition duration-200
-                         focus:outline-none
-                         focus:ring-2 focus:ring-red-500
-                         focus:ring-offset-2"
+              className="w-full rounded-lg bg-red-600 px-4 py-3
+                font-semibold text-white transition duration-200
+                hover:bg-red-700 focus:outline-none focus:ring-2
+                focus:ring-red-500 focus:ring-offset-2"
             >
               Delete Account
             </button>
@@ -107,7 +103,7 @@ const DeleteUser = () => {
         </div>
 
         {/* Warning */}
-        <p className="text-center text-xs text-gray-500 mt-5">
+        <p className="mt-5 text-center text-xs text-gray-500">
           ⚠️ This action is permanent and cannot be undone.
         </p>
 
