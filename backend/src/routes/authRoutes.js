@@ -7,6 +7,6 @@ const router = Router();
 router.post("/register", register);
 router.post("/login", login);
 router.get("/me", requireAuth, me);
-router.post("/delete-user",deleteUser)
+router.delete("/delete-user", deleteUser);
 
 export default router;

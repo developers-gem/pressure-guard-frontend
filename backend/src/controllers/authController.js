@@ -57,20 +57,15 @@ export const me = asyncHandler(async (req, res) => {
 });
 
 
+
+// post /api/auth/delete-user
+
 export const deleteUser = asyncHandler(async (req, res) => {
-  const { email } = req.body;
-
-  console.log(req.body)
-  if (!email) {
-    return res.status(400).json({
-      success: false,
-      msg: "Email is required!",
-    });
-  }
-
-  const user = await User.findOneAndDelete({
-    email: email.toLowerCase(),
-  });
+  // const userId = req.user._id;
+    const {email} = req.body;
+    console.log(email)
+  // const user = await User.findByIdAndDelete(userId);
+  const user = await User.findOneAndDelete({ email: email.toLowerCase() });
 
   if (!user) {
     return res.status(404).json({
