@@ -4,6 +4,8 @@ import Login from "@/pages/Login";
 import Register from "@/pages/Register";
 import Dashboard from "@/pages/Dashboard";
 import DeleteUser from "./pages/DeleteUser";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermNconditions from "./pages/TermNconditions";
 
 function Protected({ children }: { children: JSX.Element }) {
   const { user, loading } = useAuth();
@@ -18,6 +20,8 @@ export default function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/deleteUser" element={<DeleteUser/>} />
+      <Route path="/privacy-policy" element={<PrivacyPolicy/>} />
+      <Route path="/terms-and-conditions" element={<TermNconditions/>} />
       <Route
         path="/"
         element={
