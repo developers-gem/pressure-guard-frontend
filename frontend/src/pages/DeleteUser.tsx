@@ -2,7 +2,7 @@ import { useState, type ChangeEvent, type FormEvent } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
 const API_URL = import.meta.env.VITE_API_URL;
-
+console.log(API_URL)
 interface DeleteUserResponse {
   success: boolean;
   msg?: string;
@@ -25,7 +25,7 @@ const DeleteUser = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch(`${API_URL}/api/auth/delete-user`, {
+      const res = await fetch(`${API_URL}/auth/delete-user`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
