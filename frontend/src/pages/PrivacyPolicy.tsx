@@ -2,9 +2,10 @@ import {
   ShieldCheck,
   HeartPulse,
   Database,
-  Eye,
+  Activity,
   Share2,
   LockKeyhole,
+  UserCheck,
   Mail,
 } from "lucide-react";
 
@@ -17,24 +18,24 @@ const PrivacyPolicy = () => {
       content: (
         <p>
           Welcome to <strong>PressureGuard Care</strong>. We are committed to
-          protecting your personal information and your right to privacy. This
-          Privacy Policy explains how we collect, use, and share your
-          information when you use our mental health and wellness platform.
+          protecting the privacy and security of patients, caregivers, and
+          healthcare professionals who use our platform. This Privacy Policy
+          explains how we collect, use, store, and share information when you
+          use PressureGuard Care.
         </p>
       ),
     },
     {
       number: "02",
-      title: "Services Provided",
+      title: "About PressureGuard Care",
       icon: HeartPulse,
       content: (
         <p>
-          PressureGuard Care provides a variety of features to support your
-          mental wellbeing, including connecting you to therapists, AI chat
-          support, mood and journal tracking, a wellness library containing
-          breathing exercises, meditation, sleep aids, and articles, streak
-          tracking, push notifications, and access to crisis helplines and
-          trusted contacts.
+          PressureGuard Care is a health monitoring and pressure injury
+          prevention platform designed to help patients, caregivers, and
+          healthcare professionals monitor daily health activities, track
+          patient conditions, identify potential warning signs, and support
+          better care decisions.
         </p>
       ),
     },
@@ -45,7 +46,7 @@ const PrivacyPolicy = () => {
       content: (
         <>
           <p className="mb-4">
-            To provide these services, we collect the following types of
+            To provide our services, we may collect the following types of
             information:
           </p>
 
@@ -53,52 +54,35 @@ const PrivacyPolicy = () => {
             <li className="flex gap-3">
               <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
               <span>
-                <strong>Account Data:</strong> Name, email, and login details
-                when you create an account.
+                <strong>Account Information:</strong> Such as your name, email
+                address, login credentials, and account details.
               </span>
             </li>
 
             <li className="flex gap-3">
               <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
               <span>
-                <strong>Health & Wellness Data:</strong> Data you actively
-                input, including your daily moods, personal journal entries,
-                and app usage streaks.
+                <strong>Patient Health Information:</strong> Information
+                entered into the platform, including body position, skin
+                condition, mobility, health observations, vital signs, and
+                other relevant care information.
               </span>
             </li>
 
             <li className="flex gap-3">
               <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
               <span>
-                <strong>AI Chat Data:</strong> Questions, prompts, and
-                interactions you have with our AI chat assistant regarding
-                therapy or general wellbeing.
+                <strong>Care and Monitoring Data:</strong> Information related
+                to repositioning schedules, skin care activities, care plans,
+                reminders, and patient progress.
               </span>
             </li>
 
             <li className="flex gap-3">
               <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
               <span>
-                <strong>Location Data:</strong> We may collect location data,
-                for example through Google Maps, to help you find and connect
-                with nearby therapists.
-              </span>
-            </li>
-
-            <li className="flex gap-3">
-              <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
-              <span>
-                <strong>Contacts & Support:</strong> Information regarding
-                Trusted Contacts you add to the app for crisis support and your
-                access to helpline contacts.
-              </span>
-            </li>
-
-            <li className="flex gap-3">
-              <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
-              <span>
-                <strong>Usage Data:</strong> Information on how you interact
-                with our Wellness Library and notifications.
+                <strong>Usage Information:</strong> Information about how you
+                interact with PressureGuard Care and its features.
               </span>
             </li>
           </ul>
@@ -108,49 +92,54 @@ const PrivacyPolicy = () => {
     {
       number: "04",
       title: "How We Use Your Information",
-      icon: Eye,
+      icon: Activity,
       content: (
         <>
           <p className="mb-4">
-            We use your information strictly to provide and improve the
-            PressureGuard Care experience:
+            We use the information collected through PressureGuard Care to:
           </p>
 
           <ul className="space-y-3">
             <li className="flex gap-3">
               <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-blue-500" />
-              <span>
-                To facilitate connections between you and professional
-                therapists.
-              </span>
-            </li>
-
-            <li className="flex gap-3">
-              <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-blue-500" />
-              <span>To generate personalized AI chat responses.</span>
+              <span>Provide and maintain the PressureGuard Care platform.</span>
             </li>
 
             <li className="flex gap-3">
               <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-blue-500" />
               <span>
-                To track your wellness journey through moods, journals, and
-                streaks.
+                Help monitor daily patient health activities and observations.
               </span>
             </li>
 
             <li className="flex gap-3">
               <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-blue-500" />
               <span>
-                To send relevant notifications such as reminders or wellness
-                tips.
+                Track patient progress and historical health trends.
               </span>
             </li>
 
             <li className="flex gap-3">
               <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-blue-500" />
               <span>
-                To provide quick access to trusted contacts and crisis support
-                during emergencies.
+                Provide reminders related to repositioning, skin care, and
+                other care activities.
+              </span>
+            </li>
+
+            <li className="flex gap-3">
+              <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-blue-500" />
+              <span>
+                Help healthcare providers access relevant patient information
+                when authorized.
+              </span>
+            </li>
+
+            <li className="flex gap-3">
+              <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-blue-500" />
+              <span>
+                Improve the functionality, performance, and security of our
+                platform.
               </span>
             </li>
           </ul>
@@ -159,37 +148,45 @@ const PrivacyPolicy = () => {
     },
     {
       number: "05",
-      title: "Sharing Your Information",
+      title: "Sharing of Information",
       icon: Share2,
       content: (
         <>
           <p className="mb-4">
-            We do not sell your personal data. We only share information in the
-            following circumstances:
+            We do not sell your personal or patient information. Information
+            may only be shared in the following situations:
           </p>
 
           <ul className="space-y-3">
             <li className="flex gap-3">
               <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-purple-500" />
               <span>
-                With professional therapists when you explicitly choose to
-                connect with them for services.
+                With authorized healthcare professionals involved in the
+                patient's care.
               </span>
             </li>
 
             <li className="flex gap-3">
               <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-purple-500" />
               <span>
-                With third-party service providers, such as Google Maps or AI
-                hosting providers, strictly to facilitate app features.
+                With caregivers or authorized users who have been granted
+                access to the patient's information.
               </span>
             </li>
 
             <li className="flex gap-3">
               <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-purple-500" />
               <span>
-                To comply with legal obligations or protect the safety of our
-                users.
+                With trusted service providers when necessary to operate and
+                maintain PressureGuard Care.
+              </span>
+            </li>
+
+            <li className="flex gap-3">
+              <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-purple-500" />
+              <span>
+                When required by applicable law or when necessary to protect
+                the safety and security of users.
               </span>
             </li>
           </ul>
@@ -202,10 +199,25 @@ const PrivacyPolicy = () => {
       icon: LockKeyhole,
       content: (
         <p>
-          Because PressureGuard Care handles sensitive wellness and journal
-          data, we use industry-standard encryption and security measures to
-          protect your personal information. However, please remember that no
-          electronic transmission over the internet is 100% secure.
+          We take appropriate security measures to help protect personal and
+          health-related information from unauthorized access, loss, misuse, or
+          disclosure. Access to sensitive information is intended to be limited
+          to authorized users. However, no electronic storage system or
+          transmission over the internet can be guaranteed to be completely
+          secure.
+        </p>
+      ),
+    },
+    {
+      number: "07",
+      title: "Authorized Access",
+      icon: UserCheck,
+      content: (
+        <p>
+          Access to patient information is intended to be provided only to
+          authorized patients, caregivers, healthcare professionals, and other
+          approved users based on their role and permissions within the
+          PressureGuard Care platform.
         </p>
       ),
     },
@@ -234,13 +246,9 @@ const PrivacyPolicy = () => {
             Learn how <strong>PressureGuard Care</strong> collects, uses, and
             protects your information.
           </p>
-
-          <p className="mt-3 text-sm text-slate-500">
-            Last updated: July 30, 2026
-          </p>
         </div>
 
-        {/* Policy Card */}
+        {/* Policy Sections */}
         <div className="rounded-3xl border border-white/60 bg-white/80 p-5 shadow-xl shadow-slate-200/50 backdrop-blur-xl md:p-10">
           <div className="space-y-6">
             {sections.map((section) => {
@@ -252,12 +260,13 @@ const PrivacyPolicy = () => {
                   className="group rounded-2xl border border-slate-100 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:p-7"
                 >
                   <div className="flex flex-col gap-4 sm:flex-row">
-                    {/* Number */}
+                    {/* Section Number */}
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-cyan-500 text-sm font-bold text-white shadow-md">
                       {section.number}
                     </div>
 
                     <div className="flex-1">
+                      {/* Section Title */}
                       <div className="mb-4 flex items-center gap-3">
                         <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600">
                           <Icon size={21} />
@@ -268,6 +277,7 @@ const PrivacyPolicy = () => {
                         </h2>
                       </div>
 
+                      {/* Section Content */}
                       <div className="leading-7 text-slate-600">
                         {section.content}
                       </div>
@@ -286,19 +296,19 @@ const PrivacyPolicy = () => {
               </div>
 
               <div>
-                <h2 className="text-xl font-semibold">7. Contact Us</h2>
+                <h2 className="text-xl font-semibold">8. Contact Us</h2>
 
                 <p className="mt-2 leading-7 text-white/90">
                   If you have questions, comments, or concerns about this
-                  policy or your data privacy, please contact us through the
-                  Support Screen in the app or email us at
+                  Privacy Policy or how PressureGuard Care handles your
+                  information, please contact our support team.
                 </p>
 
                 <a
-                  href="mailto:privacy@pressureguardcare.com"
+                  href="mailto:support@pressureguardcare.com"
                   className="mt-3 inline-flex rounded-lg bg-white px-4 py-2 font-medium text-emerald-700 transition hover:scale-105 hover:shadow-md"
                 >
-                  privacy@pressureguardcare.com
+                  support@pressureguardcare.com
                 </a>
               </div>
             </div>
@@ -307,8 +317,8 @@ const PrivacyPolicy = () => {
 
         {/* Footer */}
         <p className="mt-8 text-center text-sm text-slate-500">
-          © 2026 PressureGuard Care. Your privacy and wellbeing are important
-          to us.
+          © 2026 PressureGuard Care. Your privacy and health information are
+          important to us.
         </p>
       </div>
     </main>
