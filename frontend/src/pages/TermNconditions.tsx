@@ -53,15 +53,7 @@ const TermsNConditions = () => {
         "Do not violate applicable laws",
       ],
     },
-    {
-      number: "05",
-      title: "Therapy Sessions",
-      icon: CalendarCheck,
-      content: [
-        "Appointments are subject to therapist availability.",
-        "Cancellation and rescheduling policies may apply.",
-      ],
-    },
+   
     {
       number: "06",
       title: "Payments & Subscriptions",
@@ -143,9 +135,7 @@ const TermsNConditions = () => {
             <strong>PressureGuard Care</strong>.
           </p>
 
-          <p className="mt-3 text-sm text-slate-500">
-            Last updated: July 30, 2026
-          </p>
+      
         </div>
 
         {/* Terms Card */}
