@@ -221,6 +221,146 @@ const PrivacyPolicy = () => {
         </p>
       ),
     },
+
+    // ADDED: DATA RETENTION
+    {
+      number: "08",
+      title: "Data Retention",
+      icon: Database,
+      content: (
+        <>
+          <p className="mb-4">
+            PressureGuard retains your personal and health-related information
+            only for as long as necessary to provide our services, support
+            patient care, maintain security, and comply with applicable legal
+            requirements.
+          </p>
+
+          <ul className="space-y-3">
+            <li className="flex gap-3">
+              <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
+              <span>
+                <strong>Account Information:</strong> Name, email, profile
+                details, and account preferences are retained while your
+                account is active. After account deletion, this information is
+                permanently deleted within <strong>30 days</strong>.
+              </span>
+            </li>
+
+            <li className="flex gap-3">
+              <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
+              <span>
+                <strong>Health & Care Data:</strong> Patient health
+                observations, body position, skin condition, movement, vital
+                signs, care records, and related information are retained while
+                needed to provide the App's services and support patient care.
+                Eligible data is deleted within <strong>30 days</strong> after
+                account deletion or a valid deletion request.
+              </span>
+            </li>
+
+            <li className="flex gap-3">
+              <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
+              <span>
+                <strong>Usage & Analytics Data:</strong> May be retained in
+                aggregated or anonymized form for up to{" "}
+                <strong>24 months</strong> to improve the App.
+              </span>
+            </li>
+
+            <li className="flex gap-3">
+              <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
+              <span>
+                <strong>Crash & Diagnostic Data:</strong> May be retained for
+                up to <strong>90 days</strong> for troubleshooting and
+                performance improvement.
+              </span>
+            </li>
+          </ul>
+
+          <p className="mt-4">
+            When information is no longer required, we will delete or
+            anonymize it. Certain information may be retained when required by
+            law, regulation, security, or legal obligations.
+          </p>
+        </>
+      ),
+    },
+
+    // ADDED: DATA DELETION
+    {
+      number: "09",
+      title: "Data Deletion",
+      icon: Database,
+      content: (
+        <>
+          <p className="mb-4">
+            You may request deletion of your personal information at any time,
+            subject to applicable legal and regulatory requirements.
+          </p>
+
+          <p className="mb-3">
+            <strong>In-App Deletion:</strong> If available, you can delete your
+            account through:
+          </p>
+
+          <p className="mb-4">
+            <strong>Settings → Account → Delete Account</strong>
+          </p>
+
+          <p className="mb-3">
+            <strong>Email Request:</strong> You may also request deletion by
+            emailing us with your registered email address and the subject line{" "}
+            <strong>"Data Deletion Request"</strong>.
+          </p>
+
+          <p className="mb-4">
+            We will acknowledge your request within{" "}
+            <strong>5 business days</strong> and generally permanently delete
+            eligible personal information within <strong>30 days</strong>.
+          </p>
+
+          <p className="mb-3">
+            <strong>Data That May Be Deleted:</strong>
+          </p>
+
+          <ul className="space-y-3">
+            <li className="flex gap-3">
+              <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
+              <span>Account and profile information</span>
+            </li>
+
+            <li className="flex gap-3">
+              <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
+              <span>Patient health and care data</span>
+            </li>
+
+            <li className="flex gap-3">
+              <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
+              <span>Health observations and activity records</span>
+            </li>
+
+            <li className="flex gap-3">
+              <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
+              <span>App preferences and settings</span>
+            </li>
+
+            <li className="flex gap-3">
+              <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
+              <span>Usage data linked to your account</span>
+            </li>
+          </ul>
+
+          <p className="mt-4">
+            <strong>Data That May Be Retained:</strong> We may retain
+            information required by law, necessary for legal or security
+            purposes, or stored in secure backups until their scheduled
+            deletion. Aggregated or anonymized information that cannot identify
+            you may also be retained.
+          </p>
+        </>
+      ),
+    },
   ];
 
   return (
