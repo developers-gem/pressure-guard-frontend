@@ -47,6 +47,9 @@ export default function Login() {
             <label className="mb-1 block text-xs font-medium text-muted-foreground">Password</label>
             <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
           </div>
+          <p className="mt-4 text-center text-xs text-muted-foreground">
+            <Link to="/forgot-password" className="text-primary hover:underline">Forgot Password</Link>
+          </p>
           <Button type="submit" className="w-full" disabled={busy}>
             {busy ? "Signing in…" : "Sign in"}
           </Button>
@@ -54,6 +57,7 @@ export default function Login() {
         <p className="mt-4 text-center text-xs text-muted-foreground">
           No account? <Link to="/register" className="text-primary hover:underline">Register staff account</Link>
         </p>
+
         <p className="mt-6 text-center text-[11px] text-muted-foreground">
           For clinical workflow support only. Not a substitute for professional medical judgment.
         </p>
