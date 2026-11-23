@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useNavigate, useSearchParams, Link } from "react-router-dom";
-import api from "@/lib/api";
+import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ShieldCheck } from "lucide-react";
 import { toast } from "sonner";
+
+const API_URL = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
 
 export default function ResetPassword() {
     const [searchParams] = useSearchParams();
@@ -15,7 +17,7 @@ export default function ResetPassword() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [busy, setBusy] = useState(false);
 
-    const submit = async (e: React.FormEvent) => {
+    const submit = async (e) => {
         e.preventDefault();
         if (!token) {
             toast.error("Missing reset token. Request a new reset link.");
@@ -32,10 +34,13 @@ export default function ResetPassword() {
 
         setBusy(true);
         try {
-            const { data } = await api.post("/auth/reset-password", { token, password });
+            const { data } = await axios.post(`${API_URL}/auth/reset-password`, {
+                token,
+                password,
+            });
             toast.success(data.message || "Password updated");
             navigate("/login");
-        } catch (err: any) {
+        } catch (err) {
             toast.error(err?.response?.data?.error || "Failed to reset password");
         } finally {
             setBusy(false);

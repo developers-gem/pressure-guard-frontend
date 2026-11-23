@@ -1,24 +1,28 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-// import api from "@/lib/api";
+import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ShieldCheck } from "lucide-react";
 import { toast } from "sonner";
+
+const API_URL = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
 
 export default function ForgotPassword() {
     const [email, setEmail] = useState("");
     const [busy, setBusy] = useState(false);
     const [sent, setSent] = useState(false);
 
-    const submit = async (e: React.FormEvent) => {
+    const submit = async (e) => {
         e.preventDefault();
         setBusy(true);
         try {
-            const { data } = await api.post("/auth/forgot-password", { email });
+            const { data } = await axios.post(`${API_URL}/auth/forgot-password`, {
+                email,
+            });
             setSent(true);
             toast.success(data.message || "Reset link sent if account exists.");
-        } catch (err: any) {
+        } catch (err) {
             toast.error(err?.response?.data?.error || "Could not process request");
         } finally {
             setBusy(false);
