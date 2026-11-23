@@ -17,13 +17,30 @@ export async function login(email: string, password: string) {
   const { data } = await client.post<{ token: string; user: AuthUser }>("/auth/login", { email, password });
   return data;
 }
+
 export async function register(payload: { name: string; email: string; password: string; credentials?: string }) {
   const { data } = await client.post<{ token: string; user: AuthUser }>("/auth/register", payload);
   return data;
 }
+
 export async function fetchMe() {
   const { data } = await client.get<{ user: AuthUser }>("/auth/me");
   return data.user;
+}
+
+export async function forgotPassword(email: string) {
+  const { data } = await client.post<{ message: string }>("/auth/forgot-password", { email });
+  return data;
+}
+
+export async function resetPassword(payload: { token: string; password: string }) {
+  const { data } = await client.post<{ message: string }>("/auth/reset-password", payload);
+  return data;
+}
+
+export async function deleteUser(email: string) {
+  const { data } = await client.post<{ success: boolean; msg?: string }>("/auth/delete-user", { email });
+  return data;
 }
 
 // ---- Patients ----

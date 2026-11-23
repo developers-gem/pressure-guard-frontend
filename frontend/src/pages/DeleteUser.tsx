@@ -1,82 +1,69 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { Link } from "react-router-dom";
+import { deleteUser } from "@/api/resources";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { ShieldCheck, ArrowLeft, Trash2 } from "lucide-react";
 
-const API_URL = import.meta.env.VITE_API_URL;
-console.log(API_URL)
-interface DeleteUserResponse {
-  success: boolean;
-  msg?: string;
-}
-
-const DeleteUser = () => {
+export default function DeleteUser() {
   const [email, setEmail] = useState<string>("");
+  const [busy, setBusy] = useState<boolean>(false);
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
-  const notify = (message: string): void => {
-    toast(message);
-  };
-
-  const handleFormSubmit = async (
-    e: FormEvent<HTMLFormElement>
-  ): Promise<void> => {
+  const handleFormSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
+    if (!email.trim()) {
+      toast.error("Please enter an email address");
+      return;
+    }
 
+    setBusy(true);
     try {
-      const res = await fetch(`${API_URL}/auth/delete-user`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
-
-      const data: DeleteUserResponse = await res.json();
-
+      const data = await deleteUser(email.trim());
       if (data.success) {
-        notify("User Deleted!");
+        toast.success(data.msg || "User deleted successfully!");
+        setEmail("");
       } else {
-        notify(data.msg || "Something Went Wrong!");
+        toast.error(data.msg || "Something went wrong!");
       }
-
-      setEmail("");
-    } catch (error: unknown) {
-      console.error(error);
-      notify("Unable to connect to server.");
+    } catch (error: any) {
+      toast.error(error?.response?.data?.msg || error?.response?.data?.error || "Unable to connect to server.");
+    } finally {
+      setBusy(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-muted/40 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
-        {/* Logo / App Name */}
-        <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-green-600">
-            PressureGuard Care
-          </h1>
-
-          <p className="mt-2 text-sm text-gray-500">
-            Manage your account
-          </p>
+        <div className="mb-6 flex items-center justify-center gap-2">
+          <div className="rounded-lg bg-primary/10 p-2 text-primary">
+            <ShieldCheck className="h-6 w-6" />
+          </div>
+          <div>
+            <h1 className="font-display font-semibold tracking-tight text-lg text-foreground">
+              PressureGuard Care
+            </h1>
+            <p className="text-xs text-muted-foreground">Manage your account</p>
+          </div>
         </div>
 
-        {/* Delete Card */}
-        <div className="rounded-2xl bg-white p-8 text-center shadow-lg">
-          <div className="mb-6">
-            <h2 className="text-2xl font-semibold text-gray-800">
-              Delete Account
-            </h2>
-
-            <p className="mt-2 text-sm text-gray-500">
-              Enter your registered email address to delete your account.
+        <div className="rounded-xl border bg-card p-8 shadow-sm">
+          <div className="mb-6 text-center">
+            <h2 className="text-xl font-semibold text-foreground">Delete Account</h2>
+            <p className="mt-1 text-xs text-muted-foreground">
+              Enter your registered staff email address to permanently remove your account.
             </p>
           </div>
 
-          <form onSubmit={handleFormSubmit}>
-            <div className="mb-6">
-              <input
+          <form onSubmit={handleFormSubmit} className="space-y-4">
+            <div>
+              <label className="mb-1 block text-xs font-medium text-muted-foreground">Email</label>
+              <Input
                 type="email"
                 id="delete"
                 name="email"
@@ -84,33 +71,36 @@ const DeleteUser = () => {
                 onChange={handleInput}
                 placeholder="Enter your email"
                 required
-                className="w-full rounded-lg border border-gray-300 px-4 py-3
-                  outline-none transition placeholder:text-gray-400
-                  focus:border-red-500 focus:ring-2 focus:ring-red-500"
+                autoFocus
               />
             </div>
 
-            <button
+            <Button
               type="submit"
-              className="w-full rounded-lg bg-red-600 px-4 py-3
-                font-semibold text-white transition duration-200
-                hover:bg-red-700 focus:outline-none focus:ring-2
-                focus:ring-red-500 focus:ring-offset-2"
+              variant="destructive"
+              className="w-full"
+              disabled={busy}
             >
-              Delete Account
-            </button>
+              <Trash2 className="mr-2 h-4 w-4" />
+              {busy ? "Deleting account…" : "Delete Account"}
+            </Button>
           </form>
+
+          <p className="mt-4 text-center text-xs text-amber-600 dark:text-amber-500">
+            ⚠️ This action is permanent and cannot be undone.
+          </p>
+
+          <div className="mt-6 border-t pt-4 text-center">
+            <Link
+              to="/login"
+              className="inline-flex items-center gap-1.5 text-xs text-primary hover:underline"
+            >
+              <ArrowLeft className="h-3.5 w-3.5" />
+              Back to sign in
+            </Link>
+          </div>
         </div>
-
-        {/* Warning */}
-        <p className="mt-5 text-center text-xs text-gray-500">
-          ⚠️ This action is permanent and cannot be undone.
-        </p>
-
-        <ToastContainer position="top-center" />
       </div>
     </div>
   );
-};
-
-export default DeleteUser;
+}

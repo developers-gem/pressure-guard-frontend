@@ -44,12 +44,14 @@ export default function Login() {
             <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required autoFocus />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium text-muted-foreground">Password</label>
+            <div className="flex items-center justify-between mb-1">
+              <label className="text-xs font-medium text-muted-foreground">Password</label>
+              <Link to="/forgot-password" tabIndex={-1} className="text-xs text-primary hover:underline">
+                Forgot password?
+              </Link>
+            </div>
             <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
           </div>
-          <p className="mt-4 text-center text-xs text-muted-foreground">
-            <Link to="/forgot-password" className="text-primary hover:underline">Forgot Password</Link>
-          </p>
           <Button type="submit" className="w-full" disabled={busy}>
             {busy ? "Signing in…" : "Sign in"}
           </Button>

@@ -10,14 +10,26 @@ client.interceptors.request.use((config) => {
   return config;
 });
 
+const PUBLIC_PATHS = [
+  "/login",
+  "/register",
+  "/forgot-password",
+  "/reset-password",
+  "/deleteUser",
+  "/privacy-policy",
+  "/terms-and-conditions",
+];
+
 client.interceptors.response.use(
   (res) => res,
   (err) => {
     if (err.response?.status === 401) {
       localStorage.removeItem("pg_token");
       localStorage.removeItem("pg_user");
-      if (!location.pathname.startsWith("/login")) {
-        location.href = "/login";
+      const currentPath = window.location.pathname;
+      const isPublic = PUBLIC_PATHS.some((path) => currentPath.startsWith(path));
+      if (!isPublic) {
+        window.location.href = "/login";
       }
     }
     return Promise.reject(err);
